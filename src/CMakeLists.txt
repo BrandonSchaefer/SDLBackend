@@ -39,6 +39,7 @@ set (SDL_BACKEND_HDR
      ImageTexture.h
      MainLoop.h
      GraphicsRenderer.h
+     Point.h
      Rect.h
      RenderableGeometry.h
      Renderable.h
@@ -69,3 +70,6 @@ install (TARGETS sdl-backend
          ARCHIVE DESTINATION lib
          LIBRARY DESTINATION lib
         )
+
+install (FILES ${SDL_BACKEND_HDR}
+         DESTINATION ${CMAKE_INSTALL_PREFIX}/include/sdl_backend)
