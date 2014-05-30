@@ -148,4 +148,17 @@ void Rect::Expand(int size)
   h_ += size*2;
 }
 
+bool Rect::operator==(Rect const& r) const
+{
+  return (x_ == r.x() &&
+          y_ == r.y() &&
+          w_ == r.width() &&
+          h_ == r.height());
+}
+
+bool Rect::operator!=(Rect const& r) const
+{
+  return !(*this == r);
+}
+
 } // namespace sdl_backend

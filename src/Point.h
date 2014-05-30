@@ -27,9 +27,13 @@ struct Point
 {
 public:
   Point(int x, int y);
+  Point();
 
   int x;
   int y;
+
+  bool operator==(Point const& p) const;
+  bool operator!=(Point const& p) const;
 };
 
 } // namespace sdl_backend

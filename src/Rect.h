@@ -55,6 +55,9 @@ public:
   void Shrink(int size);
   void Expand(int size);
 
+  bool operator==(Rect const& r) const;
+  bool operator!=(Rect const& r) const;
+
 private:
   int x_;
   int y_;

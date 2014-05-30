@@ -16,3 +16,4 @@ file (GLOB _datafiles "${CMAKE_CURRENT_SOURCE_DIR}/resources/*")
 install (FILES ${_datafiles} DESTINATION ${RESDIR})
 
 add_subdirectory(src)
+add_subdirectory(tests)

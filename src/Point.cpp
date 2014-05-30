@@ -28,4 +28,20 @@ Point::Point(int x_, int y_)
 {
 }
 
+Point::Point()
+  : x(0)
+  , y(0)
+{
+}
+
+bool Point::operator==(Point const& p) const
+{
+  return (x == p.x && y == p.y);
+}
+
+bool Point::operator!=(Point const& p) const
+{
+  return !(*this == p);
+}
+
 } // namespace sdl_backend
