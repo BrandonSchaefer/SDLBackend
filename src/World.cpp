@@ -91,7 +91,7 @@ void EmitSignal(std::vector<EntityLayer::Ptr> const& layers, FUNC const& func)
 
 void update_pos(EntityPair const& e, World::Ptr const& world) { e.second->UpdatePosition(world); }
 
-void World::UpdatePositions(World::Ptr const& world)
+void World::UpdatePositions(World::Ptr const& world) const
 {
   auto update_pos_fn = std::bind(update_pos, std::placeholders::_1, world);
   EmitSignal(bottom_layers_, update_pos_fn);
@@ -101,7 +101,7 @@ void World::UpdatePositions(World::Ptr const& world)
 
 void update(EntityPair const& e, float delta_time) { e.second->Update(delta_time); }
 
-void World::Update(float delta_time)
+void World::Update(float delta_time) const
 {
   auto update_fn = std::bind(update, std::placeholders::_1, delta_time);
   EmitSignal(bottom_layers_, update_fn);
@@ -111,7 +111,7 @@ void World::Update(float delta_time)
 
 void draw(EntityPair const& e, GraphicsRenderer* renderer) { e.second->Draw(renderer); }
 
-void World::Draw(GraphicsRenderer* renderer)
+void World::Draw(GraphicsRenderer* renderer) const
 {
   auto draw_fn = std::bind(draw, std::placeholders::_1, renderer);
   EmitSignal(bottom_layers_, draw_fn);
@@ -124,7 +124,7 @@ void key_down(EntityPair const& e, int keysym, int state, int repeat)
   e.second->key_down.emit(keysym, state, repeat);
 }
 
-void World::EmitKeyDown(int keysym, int state, int repeat)
+void World::EmitKeyDown(int keysym, int state, int repeat) const
 {
   auto key_down_fn = std::bind(key_down, std::placeholders::_1, keysym, state, repeat);
   EmitSignal(bottom_layers_, key_down_fn);
@@ -137,7 +137,7 @@ void key_up(EntityPair const& e, int keysym, int state, int repeat)
   e.second->key_up.emit(keysym, state, repeat);
 }
 
-void World::EmitKeyUp(int keysym, int state, int repeat)
+void World::EmitKeyUp(int keysym, int state, int repeat) const
 {
   auto key_up_fn = std::bind(key_up, std::placeholders::_1, keysym, state, repeat);
   EmitSignal(bottom_layers_, key_up_fn);
@@ -147,7 +147,7 @@ void World::EmitKeyUp(int keysym, int state, int repeat)
 
 void text_input(EntityPair const& e, std::string text) { e.second->text_input.emit(text); }
 
-void World::EmitTextInput(std::string text)
+void World::EmitTextInput(std::string const& text) const
 {
   auto text_input_fn = std::bind(text_input, std::placeholders::_1, text);
   EmitSignal(bottom_layers_, text_input_fn);
@@ -160,7 +160,7 @@ void mouse_down(EntityPair const& e, int x, int y, int button, int clicks)
   e.second->mouse_down.emit(x, y, button, clicks);
 }
 
-void World::EmitMouseDown(int x, int y, int button, int clicks)
+void World::EmitMouseDown(int x, int y, int button, int clicks) const
 {
   auto mouse_down_fn = std::bind(mouse_down, std::placeholders::_1, x, y, button, clicks);
   EmitSignal(bottom_layers_, mouse_down_fn);
@@ -173,7 +173,7 @@ void mouse_up(EntityPair const& e, int x, int y, int button, int clicks)
   e.second->mouse_up.emit(x, y, button, clicks);
 }
 
-void World::EmitMouseUp(int x, int y, int button, int clicks)
+void World::EmitMouseUp(int x, int y, int button, int clicks) const
 {
   auto mouse_up_fn = std::bind(mouse_up, std::placeholders::_1, x, y, button, clicks);
   EmitSignal(bottom_layers_, mouse_up_fn);
@@ -186,7 +186,7 @@ void mouse_move(EntityPair const& e, int x, int y, int xrel, int yrel, int state
   e.second->mouse_move.emit(x, y, xrel, yrel, state);
 }
 
-void World::EmitMouseMove(int x, int y, int xrel, int yrel, int state)
+void World::EmitMouseMove(int x, int y, int xrel, int yrel, int state) const
 {
   auto mouse_move_fn = std::bind(mouse_move, std::placeholders::_1, x, y, xrel, yrel, state);
   EmitSignal(bottom_layers_, mouse_move_fn);
@@ -199,7 +199,7 @@ void mouse_wheel(EntityPair const& e, int x, int y)
   e.second->mouse_wheel.emit(x, y);
 }
 
-void World::EmitMouseWheel(int x, int y)
+void World::EmitMouseWheel(int x, int y) const
 {
   auto mouse_wheel_fn = std::bind(mouse_wheel, std::placeholders::_1, x, y);
   EmitSignal(bottom_layers_, mouse_wheel_fn);
@@ -212,7 +212,7 @@ void finger_motion(EntityPair const& e, int x, int y, int dx, int dy)
   e.second->finger_motion.emit(x, y, dx, dy);
 }
 
-void World::EmitFingerMotion(int x, int y, int dx, int dy)
+void World::EmitFingerMotion(int x, int y, int dx, int dy) const
 {
   auto finger_motion_fn = std::bind(finger_motion, std::placeholders::_1, x, y, dx, dy);
   EmitSignal(bottom_layers_, finger_motion_fn);
@@ -225,7 +225,7 @@ void finger_down(EntityPair const& e, int x, int y, int dx, int dy)
   e.second->finger_down.emit(x, y, dx, dy);
 }
 
-void World::EmitFingerDown(int x, int y, int dx, int dy)
+void World::EmitFingerDown(int x, int y, int dx, int dy) const
 {
   auto finger_down_fn = std::bind(finger_down, std::placeholders::_1, x, y, dx, dy);
   EmitSignal(bottom_layers_, finger_down_fn);
@@ -238,7 +238,7 @@ void finger_up(EntityPair const& e, int x, int y, int dx, int dy)
   e.second->finger_up.emit(x, y, dx, dy);
 }
 
-void World::EmitFingerUp(int x, int y, int dx, int dy)
+void World::EmitFingerUp(int x, int y, int dx, int dy) const
 {
   auto finger_up_fn = std::bind(finger_down, std::placeholders::_1, x, y, dx, dy);
   EmitSignal(bottom_layers_, finger_up_fn);

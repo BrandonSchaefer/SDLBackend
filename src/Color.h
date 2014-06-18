@@ -33,6 +33,7 @@ namespace color
   SDL_Color const WHITE  = {255, 255, 255, 255};
   SDL_Color const GREY   = {120, 120, 120, 255};
   SDL_Color const BLACK  = {  0,   0,   0, 255};
+  SDL_Color const YELLOW = {255, 255,   0, 255};
   SDL_Color const DARK_GREY = {80, 80, 80, 255};
 } // namespace color
 

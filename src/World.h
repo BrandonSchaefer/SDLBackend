@@ -48,25 +48,25 @@ public:
   Entity::Ptr GetEntity(unsigned id);
   void RemoveEntity(unsigned id);
 
-  void UpdatePositions(World::Ptr const& world);
-  void Update(float delta_time);
-  void Draw(GraphicsRenderer* renderer);
+  void UpdatePositions(World::Ptr const& world) const;
+  void Update(float delta_time) const;
+  void Draw(GraphicsRenderer* renderer) const;
 
-  void EmitKeyDown(int keysym, int state, int repeat);
-  void EmitKeyUp(int keysym, int state, int repeat);
+  void EmitKeyDown(int keysym, int state, int repeat) const;
+  void EmitKeyUp(int keysym, int state, int repeat) const;
 
-  void EmitTextInput(std::string text);
+  void EmitTextInput(std::string const& text) const;
 
-  void EmitMouseDown(int x, int y, int button, int clicks);
-  void EmitMouseUp(int x, int y, int button, int clicks);
+  void EmitMouseDown(int x, int y, int button, int clicks) const;
+  void EmitMouseUp(int x, int y, int button, int clicks) const;
 
-  void EmitMouseMove(int x, int y, int xrel, int yrel, int state);
+  void EmitMouseMove(int x, int y, int xrel, int yrel, int state) const;
 
-  void EmitMouseWheel(int x, int y);
+  void EmitMouseWheel(int x, int y) const;
 
-  void EmitFingerMotion(int x, int y, int dx, int dy);
-  void EmitFingerDown(int x, int y, int dx, int dy);
-  void EmitFingerUp(int x, int y, int dx, int dy);
+  void EmitFingerMotion(int x, int y, int dx, int dy) const;
+  void EmitFingerDown(int x, int y, int dx, int dy) const;
+  void EmitFingerUp(int x, int y, int dx, int dy) const;
 
   void SetGameData(void* game_data);
   void* GameData();
