@@ -40,9 +40,23 @@ namespace color
 class Color
 {
 public:
-  Color();
+  Color(uint8_t r = 0, uint8_t g = 0, uint8_t b = 0, uint8_t a = 0);
+  Color(SDL_Color const& color);
+
+  void RandomizeRGB();
+
+  SDL_Color SDLColor() const;
+
+  uint8_t Red()   const;
+  uint8_t Blue()  const;
+  uint8_t Green() const;
+  uint8_t Alpha() const;
 
 private:
+  uint8_t r_;
+  uint8_t g_;
+  uint8_t b_;
+  uint8_t a_;
 
 };
 

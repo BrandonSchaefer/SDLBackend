@@ -58,6 +58,7 @@ if (GTEST_SRC_DIR AND
       )
 
   set (GTEST_BACKEND_SOURCE
+       test_color.cpp
        test_entity_creator.cpp
        test_main.cpp
        test_point.cpp

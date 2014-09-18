@@ -32,7 +32,7 @@ public:
 
 TEST_F(MockEntityCreator, TestUniqueID)
 {
-  int first_id = ec.GetUniqueId();
+  unsigned first_id = ec.GetUniqueId();
   EXPECT_EQ (first_id, ec.GetUniqueId() - 1);
 }
 

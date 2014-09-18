@@ -22,8 +22,52 @@
 namespace sdl_backend
 {
 
-Color::Color()
+Color::Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+  : r_(r)
+  , g_(g)
+  , b_(b)
+  , a_(a)
 {
+}
+
+Color::Color(SDL_Color const& color)
+  : r_(color.r)
+  , g_(color.g)
+  , b_(color.b)
+  , a_(color.a)
+{
+}
+
+void Color::RandomizeRGB()
+{
+  r_ = rand() % 255;
+  g_ = rand() % 255;
+  b_ = rand() % 255;
+}
+
+SDL_Color Color::SDLColor() const
+{
+  return {r_, g_, b_, a_};
+}
+
+uint8_t Color::Red()   const
+{
+  return r_;
+}
+
+uint8_t Color::Green() const
+{
+  return g_;
+}
+
+uint8_t Color::Blue()  const
+{
+  return b_;
+}
+
+uint8_t Color::Alpha() const
+{
+  return a_;
 }
 
 } // namespace sdl_backend

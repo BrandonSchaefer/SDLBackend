@@ -16,4 +16,9 @@ file (GLOB _datafiles "${CMAKE_CURRENT_SOURCE_DIR}/resources/*")
 install (FILES ${_datafiles} DESTINATION ${RESDIR})
 
 add_subdirectory(src)
-add_subdirectory(tests)
+
+option(ENABLE_TESTS "Bulid tests" ON)
+
+if (ENABLE_TESTS)
+  add_subdirectory(tests)
+endif ()
