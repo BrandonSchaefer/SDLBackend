@@ -1,0 +1,22 @@
+Source: libsdl-backend
+Section: libs
+Priority: optional
+Maintainer: Brandon Schaefer <brandon.schaefer@canonical.com>
+Build-Depends: cmake,
+               debhelper (>= 8.0.0),
+               google-mock,
+               libegl1-mesa-dev,
+               libgles2-mesa-dev,
+               libsdl2-dev,
+               libsdl2-mixer-dev,
+               libsdl2-image-dev,
+               libsdl2-ttf-dev,
+               libsigc++-2.0-dev,
+Standards-Version: 3.9.4
+Homepage: https://github.com/BrandonSchaefer/SDLBackend
+
+Package: libsdl-backend
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+Description: Backend for SDL2 that does simple things like the main loop/events/entities. Used in SDL2 examples.
