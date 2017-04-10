@@ -17,7 +17,7 @@
 */
 
 #include <EntityCreator.h>
-#include <gtest.h>
+#include <gtest/gtest.h>
 
 namespace sbe = sdl_backend;
 

@@ -20,12 +20,12 @@
 #ifndef RENDERABLE_GEOMETRY_H
 #define RENDERABLE_GEOMETRY_H
 
+#include <SDL2/SDL.h>
+
 #include "Renderable.h"
 #include "Rect.h"
 
 #include <sigc++/signal.h>
-
-#include <SDL2/SDL.h>
 
 namespace sdl_backend
 {

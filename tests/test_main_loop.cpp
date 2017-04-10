@@ -1,5 +1,5 @@
 //-*- Mode: C++; indent-tabs-mode: nil; tab-width: 2 -*-
-/* * Copyright (C) 2013-2014 Brandon Schaefer
+/* * Copyright (C) 2015 Brandon Schaefer
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License version 3 as
@@ -16,57 +16,31 @@
 * Authored by: Brandon Schaefer <brandontschaefer@gmail.com>
 */
 
-#include <Point.h>
+#include <MainLoop.h>
 #include <gtest/gtest.h>
-
-int const X = 5;
-int const Y = 4;
 
 namespace sbe = sdl_backend;
 
-class MockPoint : public testing::Test
+namespace
+{
+std::string const TITLE{"Testing"};
+int const WIDTH{800};
+int const HEIGHT{600};
+}
+
+class MockMainLoop : public testing::Test
 {
 public:
-  MockPoint()
-    : point(X, Y)
-  {}
+  MockMainLoop()
+    : main_loop(TITLE, WIDTH, HEIGHT)
+  {
+  }
 
-  sbe::Point point;
+  sbe::MainLoop main_loop;
 };
 
-TEST_F(MockPoint, TestInit)
+TEST_F(MockMainLoop, TestMainLoopInit)
 {
-  sbe::Point p;
-
-  EXPECT_EQ(p.x, 0);
-  EXPECT_EQ(p.y, 0);
-}
-
-TEST_F(MockPoint, TestInitValue)
-{
-  EXPECT_EQ(point.x, X);
-  EXPECT_EQ(point.y, Y);
-}
-
-TEST_F(MockPoint, TestCopy)
-{
-  sbe::Point p = point;
-
-  EXPECT_EQ(p.x, X);
-  EXPECT_EQ(p.y, Y);
-}
-
-TEST_F(MockPoint, TestEqualityOperator)
-{
-  sbe::Point p = point;
-
-  EXPECT_TRUE(p == point);
-}
-
-TEST_F(MockPoint, TestInequalityOperator)
-{
-  sbe::Point p = point;
-  p.x++;
-
-  EXPECT_TRUE(p != point);
+  ASSERT_TRUE(main_loop.Renderer());
+  ASSERT_TRUE(main_loop.Window());
 }

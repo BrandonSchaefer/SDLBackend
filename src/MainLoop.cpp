@@ -1,6 +1,6 @@
 // -*- Mode: C++; indent-tabs-mode: nil; tab-width: 2 -*-
 /*
- * Copyright (C) 2014 Brandon Schaefer
+ * Copyright (C) 2014-2015 Brandon Schaefer
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -43,7 +43,17 @@ MainLoop::MainLoop(std::string title, int width, int height)
   , done_(false)
 {
   InitSDL();
-  graphics_.Init(title, width, height);
+  try
+  {
+    graphics_.Init(title, width, height);
+  }
+  catch (...)
+  {
+    IMG_Quit();
+    TTF_Quit();
+    SDL_Quit();
+    throw;
+  }
 }
 
 MainLoop::~MainLoop()
@@ -64,19 +74,47 @@ void MainLoop::InitSDL() const
   if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     throw std::runtime_error("Failed to INIT SDL");
 
-  if (IMG_Init(IMG_INIT_PNG) < 0)
-    throw std::runtime_error("Failed to INIT IMG");
+  try
+  {
+    if (IMG_Init(IMG_INIT_PNG) < 0)
+      throw std::runtime_error("Failed to INIT IMG");
+  }
+  catch (...)
+  {
+    SDL_Quit();
+    throw;
+  }
 
-  if (TTF_Init() < 0)
-    throw std::runtime_error("Failed to INIT TTF");
+  try
+  {
+    if (TTF_Init() < 0)
+      throw std::runtime_error("Failed to INIT TTF");
+  }
+  catch (...)
+  {
+    IMG_Quit();
+    SDL_Quit();
+    throw;
+  }
 
-  int audio_rate = 22050;
-  Uint16 audio_format = AUDIO_S16SYS;
-  int audio_channels = 2;
-  int audio_buffers = 4096;
+  try
+  {
+    int audio_rate = 22050;
+    Uint16 audio_format = AUDIO_S16SYS;
+    int audio_channels = 2;
+    int audio_buffers = 4096;
 
-  if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) != 0)
-    throw std::runtime_error("Failed to INIT audio/mixer");
+    if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) != 0)
+      throw std::runtime_error("Failed to INIT audio/mixer");
+  }
+  catch (...)
+  {
+    TTF_Quit();
+    IMG_Quit();
+    SDL_Quit();
+    throw;
+  }
+
 }
 
 SDL_Renderer* MainLoop::Renderer() const

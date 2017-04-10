@@ -20,7 +20,7 @@
 #include <EntityLayer.h>
 #include <World.h>
 
-#include <gtest.h>
+#include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
 namespace sbe = sdl_backend;

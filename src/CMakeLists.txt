@@ -65,6 +65,8 @@ include_directories (${SDL_BACKEND_INCLUDE_DIRS} ${CMAKE_BINARY_DIR})
 
 add_library (sdl-backend SHARED ${SDL_BACKEND_SRC} ${SDL_BACKEND_HDR})
 
+target_link_libraries (sdl-backend ${SDL_BACKEND_LIBRARIES} ${SDL_BACKEND_LDFLAGS})
+
 install (TARGETS sdl-backend
          RUNTIME DESTINATION bin
          ARCHIVE DESTINATION lib
